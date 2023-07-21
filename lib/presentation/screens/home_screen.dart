@@ -8,8 +8,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController _weightController = TextEditingController();
-  TextEditingController _heightController = TextEditingController();
+  final TextEditingController _weightController = TextEditingController();
+  final TextEditingController _heightController = TextEditingController();
   
 
   @override
@@ -31,8 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(
             title: const Text("BMI Calculator"),
             centerTitle: true,
-            backgroundColor: isDarkMode ? Color.fromARGB(171, 79, 76, 76) : Colors.white,
-            foregroundColor: !isDarkMode ? Color.fromARGB(171, 79, 76, 76) : Colors.white,
+            backgroundColor: isDarkMode ? const Color.fromARGB(171, 79, 76, 76) : Colors.white,
+            foregroundColor: !isDarkMode ? const Color.fromARGB(171, 79, 76, 76) : Colors.white,
           ),
           body: Center(
             child: Padding(

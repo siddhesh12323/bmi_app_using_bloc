@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
@@ -10,8 +12,8 @@ class CustomizeScreen extends StatefulWidget {
 
 class _CustomizeScreenState extends State<CustomizeScreen> {
   int currentPageIndex = 0;
-  Color pickerColor = Color(0xff443a49);
-  Color currentColor = Color(0xff443a49);
+  Color pickerColor = const Color(0xff443a49);
+  Color currentColor = const Color(0xff443a49);
   String? _dropdownvalueWeight;
   String? _dropdownvalueHeight;
 
@@ -23,8 +25,8 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
       appBar: AppBar(
         title: const Text("Customize"),
         centerTitle: true,
-        backgroundColor: isDarkMode ? Color.fromARGB(171, 79, 76, 76) : Colors.white,
-            foregroundColor: !isDarkMode ? Color.fromARGB(171, 79, 76, 76) : Colors.white,
+        backgroundColor: isDarkMode ? const Color.fromARGB(171, 79, 76, 76) : Colors.white,
+            foregroundColor: !isDarkMode ? const Color.fromARGB(171, 79, 76, 76) : Colors.white,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -35,8 +37,8 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
               height: 80,
               child: Row(
                 children: <Widget>[
-                  Text("Change Theme"),
-                  Spacer(),
+                  const Text("Change Theme"),
+                  const Spacer(),
                   GestureDetector(
                     onTap: () {
                       void changeColor(Color color) {
@@ -101,8 +103,8 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
               height: 80,
               child: Row(
                 children: <Widget>[
-                  Text("Change Font"),
-                  Spacer(),
+                  const Text("Change Font"),
+                  const Spacer(),
                   Container(
                     height: 30,
                     width: 60,
@@ -138,17 +140,17 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
               height: 80,
               child: Row(
                 children: <Widget>[
-                  Text("Change Weight Units"),
-                  Spacer(),
+                  const Text("Change Weight Units"),
+                  const Spacer(),
                   DropdownButton(
                     items: const [
                       DropdownMenuItem(
-                        child: Text("kg"),
                         value: "kg",
+                        child: Text("kg"),
                       ),
                       DropdownMenuItem(
-                        child: Text("lb"),
                         value: "lb",
+                        child: Text("lb"),
                       ),
                     ],
                     onChanged: (selectedValue) {
@@ -167,17 +169,17 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
               height: 80,
               child: Row(
                 children: <Widget>[
-                  Text("Change Height Units"),
-                  Spacer(),
+                  const Text("Change Height Units"),
+                  const Spacer(),
                   DropdownButton(
                     items: const [
                       DropdownMenuItem(
-                        child: Text("m"),
                         value: "m",
+                        child: Text("m"),
                       ),
                       DropdownMenuItem(
-                        child: Text("ft"),
                         value: "ft",
+                        child: Text("ft"),
                       ),
                     ],
                     onChanged: (selectedValue) {

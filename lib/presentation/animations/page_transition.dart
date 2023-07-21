@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomPageTransitionsBuilder<T> extends PageTransitionsBuilder {
   @override
+  // ignore: avoid_shadowing_type_parameters
   Widget buildTransitions<T>(
     PageRoute<T> route,
     BuildContext context,
@@ -17,7 +18,7 @@ class CustomPageTransitionsBuilder<T> extends PageTransitionsBuilder {
     // Slide from right to left transition
     return SlideTransition(
       position: Tween<Offset>(
-        begin: Offset(1.0, 0.0),
+        begin: const Offset(1.0, 0.0),
         end: Offset.zero,
       ).animate(animation),
       child: child,
