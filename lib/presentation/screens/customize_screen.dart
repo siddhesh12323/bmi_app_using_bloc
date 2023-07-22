@@ -16,11 +16,28 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
   Color currentColor = const Color(0xff443a49);
   String? _dropdownvalueWeight;
   String? _dropdownvalueHeight;
+  List<String> fontList = [
+    'Atrament',
+    'Cedarville',
+    'Comic Neue',
+    'Dork Diary',
+    'Fondamento',
+    'Merriweather',
+    'Montserrat',
+    'NotoSans',
+    'Patrick Hand',
+    'PinyonScript',
+    'Proxima Nova',
+    'Raleway',
+    'Source Sans Pro',
+    'Space Mono'
+  ];
 
   @override
   Widget build(BuildContext context) {
     Brightness brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
+
     return GestureDetector(
       onHorizontalDragUpdate: (DragUpdateDetails details) {
         double dx = details.delta.dx;
@@ -43,6 +60,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
+              //* Color Picker
               Container(
                 height: 80,
                 child: Row(
@@ -65,25 +83,6 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                                     pickerColor: pickerColor,
                                     onColorChanged: changeColor,
                                   ),
-                                  // Use Material color picker:
-                                  //
-                                  // child: MaterialPicker(
-                                  //   pickerColor: pickerColor,
-                                  //   onColorChanged: changeColor,
-                                  //   showLabel: true, // only on portrait mode
-                                  // ),
-                                  //
-                                  // Use Block color picker:
-                                  //
-                                  // child: BlockPicker(
-                                  //   pickerColor: currentColor,
-                                  //   onColorChanged: changeColor,
-                                  // ),
-                                  //
-                                  // child: MultipleChoiceBlockPicker(
-                                  //   pickerColors: currentColors,
-                                  //   onColorsChanged: changeColors,
-                                  // ),
                                 ),
                                 actions: <Widget>[
                                   ElevatedButton(
@@ -110,6 +109,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                   ],
                 ),
               ),
+              //* Font Picker
               Container(
                 height: 80,
                 child: Row(
@@ -118,35 +118,65 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                     const Spacer(),
                     Container(
                       height: 30,
-                      width: 60,
-                      child: GestureDetector(
-                        onTap: () {
+                      width: 100,
+                      child: TextButton(
+                        onPressed: () {
+                          final controller = AnimationController(
+                            duration: const Duration(
+                                milliseconds:
+                                    400), // Adjust the duration as needed
+                            vsync: Navigator.of(context),
+                          );
+
+                          // Define the animation curve (e.g., easeIn, easeOut, easeInOut)
+                          final animation = CurvedAnimation(
+                              parent: controller, curve: Curves.fastOutSlowIn);
                           showDialog(
                               context: context,
                               builder: (context) {
-                                return AlertDialog(
-                                  content: Container(
-                                    width: double.maxFinite,
-                                    child: ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount: 26,
-                                        itemBuilder: (context, index) {
-                                          return ListTile(
-                                            onTap: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            title: Text(index.toString()),
-                                          );
-                                        }),
-                                  ),
+                                return AnimatedBuilder(
+                                  animation: animation,
+                                  builder: (context, child) {
+                                    return Transform.scale(
+                                      scale: animation.value,
+                                      child: AlertDialog(
+                                        content: Container(
+                                          width: double.maxFinite,
+                                          child: ListView.builder(
+                                              shrinkWrap: true,
+                                              itemCount: fontList.length,
+                                              itemBuilder: (context, index) {
+                                                return ListTile(
+                                                  onTap: () {
+                                                    controller.reverse().then(
+                                                        (value) => Navigator.of(
+                                                                context)
+                                                            .pop());
+                                                  },
+                                                  title: Text(
+                                                    fontList[index],
+                                                    style: TextStyle(
+                                                        fontFamily:
+                                                            fontList[index]),
+                                                  ),
+                                                );
+                                              }),
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 );
                               });
+                          controller.forward();
                         },
+                        child: Center(
+                            child: FittedBox(child: Text('currentFont'))),
                       ),
                     ),
                   ],
                 ),
               ),
+              //* Weight units change
               Container(
                 height: 80,
                 child: Row(
@@ -176,6 +206,7 @@ class _CustomizeScreenState extends State<CustomizeScreen> {
                   ],
                 ),
               ),
+              //* Height units change
               Container(
                 height: 80,
                 child: Row(

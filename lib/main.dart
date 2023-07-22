@@ -30,6 +30,9 @@ class _MyAppState extends State<MyApp> {
           builders: {
             TargetPlatform.android: CustomPageTransitionsBuilder(),
             TargetPlatform.iOS: CustomPageTransitionsBuilder(),
+            TargetPlatform.windows: CustomPageTransitionsBuilder(),
+            TargetPlatform.macOS: CustomPageTransitionsBuilder(),
+            TargetPlatform.linux: CustomPageTransitionsBuilder(),
           },
         ),
       ),
@@ -40,6 +43,9 @@ class _MyAppState extends State<MyApp> {
           builders: {
             TargetPlatform.android: CustomPageTransitionsBuilder(),
             TargetPlatform.iOS: CustomPageTransitionsBuilder(),
+            TargetPlatform.windows: CustomPageTransitionsBuilder(),
+            TargetPlatform.macOS: CustomPageTransitionsBuilder(),
+            TargetPlatform.linux: CustomPageTransitionsBuilder(),
           },
         ),
       ),
