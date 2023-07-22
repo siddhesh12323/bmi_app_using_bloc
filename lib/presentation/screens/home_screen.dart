@@ -20,10 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
       onHorizontalDragUpdate: (DragUpdateDetails details) {
             double dx = details.delta.dx;
             if (dx < 0) {
-              // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              //   content: Text("Swiped left"),
-              //   duration: Duration(milliseconds: 150),
-              // ));
               Navigator.of(context).pushNamed('/customize');
             }
           },
